@@ -1,2 +1,2 @@
 import * as request from 'supertest'
-import jsonData  from '../jsonData'
+import jsonFetcher  from '../jsonFetcher/jsonFetcher'
