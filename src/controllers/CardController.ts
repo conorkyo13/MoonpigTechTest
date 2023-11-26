@@ -13,9 +13,9 @@ class CardController {
 
     async getCards(req, res): Promise<void> {
       try {
-        const cards = this.cardModel.getAllCards();
-        //const formattedCards = this.cardView.formatCards(cards);
-        res.json(cards);
+        let cards = this.cardModel.getAllCards();
+        let formattedCards = this.cardView.formatCards(cards);
+        res.status(200).json(formattedCards);
       } catch(error) {
         res.status(500).json({ error: 'Internal server error' });
       }
