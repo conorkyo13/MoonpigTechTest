@@ -10,6 +10,17 @@ class CardController {
       this.cardModel = cardModel;
       this.cardView = cardView;
     }
+
+    async getCards(req, res): Promise<void> {
+      try {
+        const cards = this.cardModel.getAllCards();
+        //const formattedCards = this.cardView.formatCards(cards);
+        res.json(cards);
+      } catch(error) {
+        res.status(500).json({ error: 'Internal server error' });
+      }
+    }
+    
 }
 
 export default CardController;
