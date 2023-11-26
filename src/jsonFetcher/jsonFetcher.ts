@@ -1,3 +1,4 @@
+import axios from "axios";
 
 class jsonFetcher {
     private data: any;
@@ -8,12 +9,15 @@ class jsonFetcher {
 
     async fetchData(): Promise<void> {
       try {
-        const response = await fetch(this.url);
-        if (!response.ok) {
+        const response = await axios(this.url);
+        if (response.status = 200) {
+          this.data = response.data;
+        }
+        
+        else {
           throw new Error('Failed to fetch data');
         }
   
-        this.data = await response.json();
       } catch (error) {
         console.error('Error fetching data:', error);
       }
