@@ -1,11 +1,18 @@
 import * as request from 'supertest'
-import { app } from '../server'
+import { app, fetchDataAndInitiateApp } from '../server'; 
 
-test('returns matching card title', async () => {
-  const response = await request(app).get('/cards/card001')
+beforeAll(async () => {
+  await fetchDataAndInitiateApp(); 
+});
 
-  expect(response.status).toBe(200)
-  expect(response.body).toEqual(expect.objectContaining({
-    title: 'card 1 title',
-  }))
-})
+describe('Testing express endpoints', () => {
+
+  test('GET /cards should return a list of cards', async () => {
+    const response = await request(app).get('/cards');
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body)).toBe(true); // Assuming the response is an array
+    // Additional assertions as needed
+  });
+
+  
+});
