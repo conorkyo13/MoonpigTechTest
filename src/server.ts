@@ -34,7 +34,7 @@ async function fetchDataAndInitiateApp() {
 
     app.get('/cards/:cardId/:sizeId?', async (req, res) => {
       // respond with card by id
-      // You can use cardController.getCardById(req.params.cardId, req.params.sizeId) here to handle the request
+      
     });
 
   } catch(error) {
