@@ -12,8 +12,8 @@ describe('CardController', () => {
   } as unknown as Response;
 
   const cardsData = [
-    { id: '1', title: 'Card 1', sizes: ['s', 'm', 'l'], basePrice: 200, pages: [{ title: "front cover", templateId: "template1"}] },
-    { id: '2', title: 'Card 2', sizes: ['s', 'm'], basePrice: 300, pages: [{ title: "back cover", templateId: "template2"}] },
+    { id: '1', title: 'Card 1', sizes: ['sm', 'md', 'lg'], basePrice: 200, pages: [{ title: "front cover", templateId: "template1"}] },
+    { id: '2', title: 'Card 2', sizes: ['sm', 'md'], basePrice: 300, pages: [{ title: "back cover", templateId: "template2"}] },
     
   ];
 
@@ -33,10 +33,16 @@ describe('CardController', () => {
   const cardView = new CardView();
   const cardController = new CardController(cardModel, cardView);
 
-  it('should get all cards', async () => {
+  test('should get all cards', async () => {
     await cardController.getCards(mockRequest, mockResponse);
     expect(mockResponse.json).toHaveBeenCalled();
     
+  });
+
+  test('should get card details by ID', async () => {
+    mockRequest.params = { cardId: '1', sizeId: 'md' };
+    await cardController.getCardById(mockRequest, mockResponse);
+    expect(mockResponse.json).toHaveBeenCalled();
   });
 
   

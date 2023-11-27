@@ -17,6 +17,19 @@ class CardController {
         let formattedCards = this.cardView.formatCards(cards);
         res.status(200).json(formattedCards);
       } catch(error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
+      
+    }
+
+    async getCardById(req, res): Promise<void> {
+      let { cardId, sizeId } = req.params;
+      try {
+        let card = this.cardModel.getCardById(cardId, sizeId);
+        res.status(200).json(card);
+      } catch(error) {
+        console.log(error);
         res.status(500).json({ error: 'Internal server error' });
       }
     }
