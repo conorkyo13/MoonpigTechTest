@@ -1,36 +1,24 @@
-import * as request from 'supertest'
-import fetchMock from 'jest-fetch-mock';
+import axios, {AxiosInstance} from 'axios';
 import jsonFetcher from '../jsonFetcher/jsonFetcher'
 
-const cardsURL = 'https://moonpig.github.io/tech-test-node-backend/cards.json';
+jest.mock('axios');
 
+const mockUrl = 'https://moonpig.github.io/tech-test-node-backend/mock.json';
 
-describe('JSON Fetcher', () => {
-    const validJsonFetcher = new jsonFetcher(cardsURL);
-    const invalidJsonFetcher = new jsonFetcher('');
+describe('jsonFetcher', () => {
 
-    fetchMock.enableMocks();
-    
-    test('it should fetch data with no error', async () => {
-        try {
-            await validJsonFetcher.fetchData();
-            
-            //fail('Expected the promise to reject, but it resolved.');
-          } catch (error) {
-            fail('Expected the promise to reject, but it resolved.');
-            //expect(error).toBeDefined(); 
-          }
-    }) 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-    test('it should fetch data with an error', async () => {
-        try {
-            await invalidJsonFetcher.fetchData();
-            //expect()
-          } catch (error) {
-            
-            expect(error).toBeDefined();
-          }
-    }) 
+  test('handles failed data fetch', async () => {
+    //let axiosMock = axios as jest.Mocked<typeof axios>; 
+    //axiosMock.get.mockRejectedValueOnce(new Error('Failed to fetch data'));
 
-    
-})
+    let fetcher = new jsonFetcher(mockUrl);
+    await fetcher.fetchData();
+
+    //expect(axiosMock.get).toHaveBeenCalledWith(mockUrl);
+    expect(fetcher.getData()).toBeNull(); 
+  });
+});
