@@ -119,12 +119,12 @@ describe('CardModel', () => {
 
   describe('getCardPages()', () => {
 
-    let templateData = [
+    const templateData = [
       { id: 'template1', width: 300, height: 600, imageUrl: '/image1.jpg' },
       { id: 'template2', width: 400, height: 800, imageUrl: '/image2.jpg' },
     ];
 
-    let mockCard = {
+    const mockCard = {
       id: 'card1',
       title: 'Sample Card',
       sizes: ['size1', 'size2'],
@@ -135,7 +135,8 @@ describe('CardModel', () => {
       ],
     };
 
-    let cardModel2 = new CardModel([], [], templateData);
+    const cardModel2 = new CardModel([], [], templateData);
+
     test('formats card pages accurately based on available templateData', () => {
       let formattedPages = cardModel2.getCardPages(mockCard);
       expect(formattedPages).toEqual([

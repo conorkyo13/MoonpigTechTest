@@ -11,6 +11,7 @@ const templatesURL = 'https://moonpig.github.io/tech-test-node-backend/templates
 export const app = express()
 app.set('json spaces', 2);
 
+// used an async function so I could wait for all the data to be fetched before moving on to the endpoint implementation
 async function fetchDataAndInitiateApp() {
   try {
     const cardsData = new jsonFetcher(cardsURL);
@@ -38,7 +39,6 @@ async function fetchDataAndInitiateApp() {
     });
 
   } catch(error) {
-  
     console.log(error);
     throw(error);
   }

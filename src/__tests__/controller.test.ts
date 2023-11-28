@@ -1,4 +1,3 @@
-import * as request from 'supertest'
 import { Request, Response } from 'express';
 import CardModel from '../models/CardModel';
 import CardView from '../views/CardView';

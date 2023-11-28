@@ -1,4 +1,3 @@
-import * as express from "express";
 import CardModel from "../models/CardModel";
 import CardView from "../views/CardView";
 
