@@ -29,12 +29,12 @@ async function fetchDataAndInitiateApp() {
 
     app.get('/cards', async (req, res) => {
       // respond with a list of cards
-        cardController.getCards(req,res);
+      cardController.getCards(req, res);
     });
 
     app.get('/cards/:cardId/:sizeId?', async (req, res) => {
       // respond with card by id
-      
+      cardController.getCardById(req, res);
     });
 
   } catch(error) {
