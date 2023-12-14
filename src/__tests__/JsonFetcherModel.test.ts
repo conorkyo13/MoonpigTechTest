@@ -1,12 +1,12 @@
 import axios, {AxiosInstance} from 'axios';
-import jsonFetcher from '../jsonFetcher/jsonFetcher'
+import JsonFetcherModel from '../models/JsonFetcherModel'
 
 jest.mock('axios');
 
 const cardUrl = 'https://moonpig.github.io/tech-test-node-backend/card.json';
 const mockUrl = 'https://moonpig.github.io/tech-test-node-backend/mock.json';
 
-describe('jsonFetcher', () => {
+describe('JsonFetcherModel', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -15,7 +15,7 @@ describe('jsonFetcher', () => {
     const mockData = { id: 'card001' };
     (axios.get as jest.Mock).mockResolvedValueOnce({ status: 200, data: mockData });
 
-    const fetcher = new jsonFetcher(cardUrl);
+    const fetcher = new JsonFetcherModel(cardUrl);
     await fetcher.fetchData();
 
     expect(axios).toHaveBeenCalledTimes(1);
@@ -29,7 +29,7 @@ describe('jsonFetcher', () => {
     const errorMessage = 'Failed to fetch data';
     (axios.get as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
 
-    const fetcher = new jsonFetcher(mockUrl);
+    const fetcher = new JsonFetcherModel(mockUrl);
     await fetcher.fetchData();
 
     expect(axios).toHaveBeenCalledTimes(1);

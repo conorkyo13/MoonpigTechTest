@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class jsonFetcher {
+class JsonFetcherModel {
     private data: any;
 
     constructor(private url: string) {
@@ -28,4 +28,4 @@ class jsonFetcher {
     }
 }
 
-export default jsonFetcher;
+export default JsonFetcherModel;

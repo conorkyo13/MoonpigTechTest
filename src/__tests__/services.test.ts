@@ -1,11 +1,19 @@
 import * as request from 'supertest'
-import { app, fetchDataAndInitiateApp } from '../server'; 
-
-beforeAll(async () => {
-  await fetchDataAndInitiateApp(); 
-});
+import {app} from '../server'
+import DataService from '../services/DataService';
 
 describe('Testing express endpoints', () => {
+
+  beforeAll(async () => {
+
+    const cardsURL = 'https://moonpig.github.io/tech-test-node-backend/cards.json';
+    const sizesURL = 'https://moonpig.github.io/tech-test-node-backend/sizes.json';
+    const templatesURL = 'https://moonpig.github.io/tech-test-node-backend/templates.json';
+
+    const dataService = new DataService(cardsURL, sizesURL, templatesURL);
+
+    await dataService.initiateAppEndpoints(app);
+  });
 
   test('returns a list of cards', async () => {
     const response = await request(app).get('/cards');
